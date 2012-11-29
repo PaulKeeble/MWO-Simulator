@@ -1,0 +1,35 @@
+30 + HS * eff
+
+15 DHS
+
+30 + 21 = 51
+
+
+Question is 8% to 50% reasonable for 2LL + 3ML of heat
+
+2x7 + 3x4
+14+12 = 26
+
+42% of 60!!!
+
+2.0 extra capacity from the DHS.
+
+Duration of lasers was 1 second, giving 
+
+-<Module name="HeatSink_MkI" id="3000" CType="CHeatSinkStats"> <ModuleStats tons="1" slots="1" health="10"/> <Loc iconTag="3" descTag="@HeatSink_MkI_desc" nameTag="@HeatSink_MkI"/> <HeatSinkStats heatbase="-1.0" cooling="0.1"/> -<EffectList> <Effect name="SteamEffect" asset="mech_effects.heatsinks.steam_a"/> </EffectList> <Audio OnDestroyedDialogue="BB_Mech_HeatSink_Destroyed"/> </Module> -<Module name="DoubleHeatSink_MkI" id="3001" CType="CHeatSinkStats" DestroyedDialogue="BB_Mech_HeatSink_Destroyed"> <ModuleStats tons="1" slots="3" health="10"/> <Loc iconTag="2" descTag="@DoubleHeatSink_MkI_desc" nameTag="@DoubleHeatSink_MkI"/> <HeatSinkStats heatbase="-1.4" cooling="0.14"/> -<EffectList> <Effect name="SteamEffect" asset="mech_effects.heatsinks.steam_a"/> </EffectList> <Audio OnDestroyedDialogue="BB_Mech_HeatSink_Destroyed"/> </Module>
+
+
+-<Talent MasterBonus="2.0" EliteBonus="2.0" xpcost="750" ranks="1" name="eMTBasic_CoolRun" id="1"> -<Rank id="1"> 
+<!-- -->
+ <Bonus value="0.075" attribute="HeatDissipation"/> </Rank> </Talent>
+
+-<Talent MasterBonus="2.0" EliteBonus="2.0" xpcost="1000" ranks="1" name="eMTBasic_HeatContainment" id="4"> -<Rank id="1"> 
+<!-- -->
+ <Bonus value="0.1" attribute="MaxHeatThreshold"/> </Rank> </Talent>
+
+-<Talent MasterBonus="2.0" xpcost="6000" ranks="1" name="eMTElite_FastFire" id="101"> -<Rank id="1"> 
+<!-- -->
+ <Bonus value="0.05" attribute="WeaponCooldown"/> </Rank> </Talent>
+
+DHS is 1.4 advantage outside
+Engine heatsinks are 2.0 capacity and heat dissipation
