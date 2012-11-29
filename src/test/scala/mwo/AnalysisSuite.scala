@@ -23,9 +23,9 @@ class AnalysisSuite extends FunSuite {
        val gauss2fired = gauss2.fire(Time(0)).fire(Time(5))
        
        val expected = Map(
-           (time0,Set(gauss1fired,gauss2fired)),
-           (Time(4),Set(gauss1fired)),
-           (Time(5),Set(gauss2fired)))
+           (time0,List(gauss2fired,gauss1fired)),
+           (Time(4),List(gauss1fired)),
+           (Time(5),List(gauss2fired)))
        assert(firedWeapons(List(gauss1fired,gauss2fired))===expected)
     }
   }

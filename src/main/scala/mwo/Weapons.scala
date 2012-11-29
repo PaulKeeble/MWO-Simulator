@@ -13,5 +13,6 @@ trait Weapons extends GameDef {
 	
 	def ssrm2 = new Weapon(name="Streak SRM2",damage = "5", heat = "2", cooldown = "3.5")
 	def srm2 = new Weapon(name="SRM2",damage = "5", heat = "2", cooldown = "3.5")
+	def srm4 = new Weapon(name="SRM4",damage = "10", heat = "3", cooldown = "3.75")
 	def srm6 = new Weapon(name="SRM6",damage = "15", heat = "4", cooldown = "4")
 }
