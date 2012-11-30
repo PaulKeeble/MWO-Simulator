@@ -53,7 +53,7 @@ trait GameDef {
     
     def addHeat(newHeat:Heat) : Element = Element(capacity,cooling,current + newHeat)
     
-    def coolHeat : Element = Element(capacity,cooling, BigDecimal(0).max(current - (cooling* step)))
+    def coolHeat : Element = Element(capacity,cooling, BigDecimal(0).max(current - (cooling/10 * step)))
   }
   
   abstract class HeatSink {
