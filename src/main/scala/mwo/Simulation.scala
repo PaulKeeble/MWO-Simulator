@@ -9,8 +9,8 @@ trait Simulation extends GameDef {
   
   def initialMech : Mech
   
-  def cool(mech:Mech) : Mech = {
-    mech.cool
+  def cool(now:Time,mech:Mech) : Mech = {
+    mech.cool(now)
   }
   
   def step(mech:Mech,moment:Time) : Mech = {
@@ -24,7 +24,7 @@ trait Simulation extends GameDef {
 	      }
     }
 
-    cool(fireWeapons(mech,mech.weapons))
+    cool(moment,fireWeapons(mech,mech.weapons))
   }
   
   def timeSteps(from:Time,to:Time) : Stream[Time] = 

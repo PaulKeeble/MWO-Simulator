@@ -47,13 +47,19 @@ trait GameDef {
   /**
    * Cooling is in heat per second
    */
-  case class Element(capacity:Heat,cooling:Heat,current:Heat=Heat("0")) {
+  case class Element(capacity:Heat,cooling:Heat,current:Heat=Heat("0"),history:Map[Time,Heat]=Map()) {
     
-    def hasCapacity(newHeat:Heat) : Boolean = newHeat< capacity - current
+    def hasCapacity(newHeat:Heat) : Boolean = current + newHeat< capacity
     
-    def addHeat(newHeat:Heat) : Element = Element(capacity,cooling,current + newHeat)
+    def addHeat(now:Time,extra:Heat) : Element = {
+      val next = current + extra
+      Element(capacity,cooling,next,history+(now->next))
+    } 
     
-    def coolHeat : Element = Element(capacity,cooling, BigDecimal(0).max(current - (cooling/10 * step)))
+    def coolHeat(now:Time) : Element = {
+     val next = BigDecimal(0).max(current - (cooling/10 * step))
+     Element(capacity,cooling, next,history+(now->next)) 
+    }
   }
   
   abstract class HeatSink {
@@ -76,9 +82,9 @@ trait GameDef {
     
     def fire(weapon: Weapon,now:Time) : Mech = {
      val updatedWeapons = weapons updated (weapons.indexOf(weapon),weapon.fire(now))
-      Mech(element.addHeat(weapon.heat),updatedWeapons)
+      Mech(element.addHeat(now,weapon.heat),updatedWeapons)
     }
     
-    def cool : Mech = new Mech(element.coolHeat,weapons)
+    def cool(now:Time) : Mech = new Mech(element.coolHeat(now),weapons)
   }
 }
