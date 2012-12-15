@@ -114,4 +114,10 @@ object Simulate {
                                                   //| 10.00s 195 damage 38.3634 heat
                                                   //| 20.00s 330 damage 55.7634 heat
                                                   //| 90.00s 1195 damage 53.5634 heat
+  val atlasDMlaser = new MWOSimulation {
+    val initialMech = Mech(Element(16,DoubleHeatSink()), weapons = List(gauss,uac5,ssrm2,ssrm2,mlaser,mlaser,mlaser,mlaser))
+  }.analysisPoints                                //> atlasDMlaser  : String = 0s 55 damage 22.9676 heat
+                                                  //| 10.00s 225 damage 48.5676 heat
+                                                  //| 20.00s 370 damage 50.1676 heat
+                                                  //| 90.00s 1435 damage 51.3676 heat
 }

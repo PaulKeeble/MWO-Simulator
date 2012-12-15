@@ -41,6 +41,8 @@ trait Analysis extends Simulation {
 
   def heat(mech:Mech):HeatPoints = mech.element.history.toList.sortBy{ case (t,h) => t}
   
+  def fired(mech:Mech): List[(Time,List[Weapon])] = ???
+  
   def accumulate(timeSeries:List[(Time,BigDecimal)]):List[(Time,BigDecimal)] = {
     def accumulate(series:List[(Time,BigDecimal)],total:BigDecimal,acc:List[(Time,BigDecimal)]) :List[(Time,BigDecimal)] = {
       series match {

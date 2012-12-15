@@ -11,10 +11,11 @@ class AnalysisSuite extends FunSuite {
     override val step = Time("1")
     val time0 = Time(0)
 
-    val gauss = new Weapon(damage = "15.0", heat = "1.0", cooldown = "4.0", history = List())
+    val gauss = new Weapon(damage = "15.0", heat = "1.0", cooldown = "4.0")
     val gauss2 = gauss.cloneNew
+    val llaser = new Weapon(damage = "9", heat = "7", cooldown = "3.25")
 
-    def initialMech = new Mech(Element(capacity = "2", cooling = "1"), weapons = List(gauss))
+    def initialMech = new Mech(Element(capacity = "10", cooling = "1"), weapons = List(gauss,llaser))
   }
 
   test("firedWeapons map") {
@@ -34,7 +35,7 @@ class AnalysisSuite extends FunSuite {
     new TestAnalysis {
       val damagePoints = damage(basicSim)
       val expected = List(
-        (Time(0), Damage("15.0")),
+        (Time(0), Damage("24.0")),
         (Time(1), Damage(0)),
         (Time(2), Damage(0)),
         (Time(3), Damage(0)),
@@ -48,15 +49,15 @@ class AnalysisSuite extends FunSuite {
     new TestAnalysis {
       val accumulated = accumulate(damage(basicSim))
 
-      val dam15 = Damage("15.0")
-      val dam30 = dam15 + dam15
+      val dam24 = Damage("24")
+      val dam39 = dam24 + Damage("15")
       val expected = List(
-        (Time(0), dam15),
-        (Time(1), dam15),
-        (Time(2), dam15),
-        (Time(3), dam15),
-        (Time(4), dam30),
-        (Time(5), dam30))
+        (Time(0), dam24),
+        (Time(1), dam24),
+        (Time(2), dam24),
+        (Time(3), dam24),
+        (Time(4), dam39),
+        (Time(5), dam39))
       assert(expected === accumulated)
     }
   }
@@ -67,16 +68,22 @@ class AnalysisSuite extends FunSuite {
     new TestAnalysis {
       val heatTrace = heat(basicSim)
 
-      val dam15 = Damage("15.0")
-      val dam30 = dam15 + dam15
       val expected = List(
-        (Time(0), Heat("0.9")),
-        (Time(1), Heat("0.8")),
-        (Time(2), Heat("0.7")),
-        (Time(3), Heat("0.6")),
-        (Time(4), Heat("1.5")),
-        (Time(5), Heat("1.4")))
+        (Time(0), Heat("7.9")),
+        (Time(1), Heat("7.8")),
+        (Time(2), Heat("7.7")),
+        (Time(3), Heat("7.6")),
+        (Time(4), Heat("8.5")),
+        (Time(5), Heat("8.4")))
       assert(expected === heatTrace)
+    }
+  }
+  
+  test("Weapons fired trace") {
+    new TestAnalysis {
+      val firedTrace = fired(basicSim)
+      
+      
     }
   }
 }
